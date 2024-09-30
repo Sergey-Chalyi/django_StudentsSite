@@ -6,13 +6,11 @@
 </head>
 <body>
     <ul>
-        {% for page in menu %}
-        <li><a href="#">{{ page.name }}</a></li>
-        {% endfor %}
+        <li><a href="{% url 'start_page' %}">Home</a></li>
+        <li><a href="{% url 'support_main' %}">Support</a></li>
     </ul>
     <hr>
     {% block content %}
-
     {% endblock %}
 </body>
 </html>
