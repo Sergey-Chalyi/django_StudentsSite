@@ -1,13 +1,15 @@
 {% extends "../index.html" %}
 {% block content %}
-<h1 align="center">Hello, world)</h1>
-<h2 align="center">This is a site for students to find a job)))</h2>
+<div class="text-center">
+    <h1>Hello, world)</h1>
+    <h2>This is a site for students to find a job)))</h2>
+</div>
 <br>
-<table align="center">
+<table class="table text-center">
     <tr>
         {% for page in pages %}
-        <td><a href="#">{{ page }}</a></td>
+        <td><a class="btn btn-primary" href="#">{{ page }}</a></td>
         {% endfor %}
     </tr>
 </table>
-{% endblock content %}
+{% endblock %}
