@@ -2,11 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page_title }}</title>
     <!-- Подключение Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Ensure the body and HTML take the full height of the page */
+        html, body {
+            height: 100%;
+        }
+
+        /* Flexbox layout to ensure the footer is at the bottom */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Main content should take up available space */
+        .content {
+            flex: 1;
+        }
+
+        /* Footer at the bottom of the page (after the content) */
+        .footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'start_page' %}">Home</a>
@@ -22,11 +49,20 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
+
+    <!-- Main content -->
+    <div class="container mt-4 content">
         <hr>
         {% block content %}
         {% endblock %}
     </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto">
+        <div class="container">
+            <span class="text-muted">Company</span>
+        </div>
+    </footer>
 
     <!-- Подключение Bootstrap JS и его зависимостей -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
