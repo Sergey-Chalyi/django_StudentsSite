@@ -6,30 +6,54 @@
     <title>{{ page_title }}</title>
     <!-- Подключение Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Ensure the body and HTML take the full height of the page */
+        /* Existing Styles */
         html, body {
             height: 100%;
         }
 
-        /* Flexbox layout to ensure the footer is at the bottom */
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #ffffff;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Main content should take up available space */
         .content {
             flex: 1;
         }
 
-        /* Footer at the bottom of the page (after the content) */
         .footer {
             background-color: #f8f9fa;
             text-align: center;
             padding: 10px 0;
         }
+
+        /* Dark Theme Styles */
+        body.dark-theme {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .navbar {
+            background-color: #1f1f1f;
+        }
+
+        body.dark-theme .footer {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .card {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+
+        /* Additional element styles can be added here as needed */
     </style>
 </head>
 <body>
@@ -37,13 +61,27 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'start_main' %}">Site</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'start_main' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'support_main' %}">Support</a>
+                    </li>
+                    <!-- Dark Mode Toggle Switch -->
+                    <li class="nav-item d-flex align-items-center ml-3">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="themeSwitch">
+                            <label class="custom-control-label" for="themeSwitch">
+                                <i class="fas fa-sun text-warning" id="sunIcon" style="display: none;"></i>
+                                <i class="fas fa-moon text-light" id="moonIcon"></i>
+                            </label>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -68,5 +106,36 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeSwitch = document.getElementById('themeSwitch');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            const currentTheme = localStorage.getItem('theme');
+
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeSwitch.checked = true;
+                sunIcon.style.display = "inline";  // Show sun icon
+                moonIcon.style.display = "none";   // Hide moon icon
+            }
+
+            themeSwitch.addEventListener('change', function () {
+                if (this.checked) {
+                    document.body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark');
+                    sunIcon.style.display = "inline";  // Show sun icon
+                    moonIcon.style.display = "none";   // Hide moon icon
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    localStorage.setItem('theme', 'light');
+                    sunIcon.style.display = "none";   // Hide sun icon
+                    moonIcon.style.display = "inline";  // Show moon icon
+                }
+            });
+        });
+    </script>
 </body>
 </html>
