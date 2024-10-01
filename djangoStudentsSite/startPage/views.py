@@ -24,10 +24,10 @@ def start(request: HttpRequest):
                 'name' : 'Looking for a job',
                 'path' : 'look_job_main'
             },
-            # {
-            #     'name': 'Looking for a students',
-            #     'path': 'look_job_main'
-            # },
+            {
+                'name': 'Looking for students',
+                'path': 'look_student_main'
+            },
         ]
     }
     return render(request, 'startPage/startPage_main.html', data)

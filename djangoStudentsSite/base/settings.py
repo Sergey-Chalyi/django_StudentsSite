@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'startPage.apps.StartPageConfig',
     'support.apps.SupportConfig',
     'lookForJob.apps.LookForJobConfig',
+    'lookForStudent.apps.LookForStudentConfig'
 ]
 
 MIDDLEWARE = [
