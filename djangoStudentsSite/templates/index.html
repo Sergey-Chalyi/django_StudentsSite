@@ -61,6 +61,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'start_main' %}">Site</a>
+
+            <!-- New Links -->
+            <div class="d-flex">
+                <a class="nav-link border border-primary text-primary" href="{% url 'look_job_main' %}">Look for Job</a>
+                <span class="mx-1"></span>
+                <a class="nav-link border border-primary text-primary" href="{% url 'look_student_main' %}">Look for Students</a>
+            </div>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -83,10 +91,15 @@
                             </label>
                         </div>
                     </li>
+                    <!-- Enter Button -->
+                    <li class="nav-item">
+                        <button class="btn btn-primary ml-2">Log in</button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 
     <!-- Main content -->
     <div class="container mt-4 content">

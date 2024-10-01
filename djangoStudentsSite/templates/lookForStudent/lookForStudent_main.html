@@ -1,7 +1,41 @@
 {% extends "../index.html" %}
+
 {% block content %}
-<div class="text-center">
-    <h1>Look for Students</h1>
-    <p>If you need students, they are here!</p>
+<div class="row">
+    <!-- Left Sidebar -->
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Filters</h5>
+                <!-- Убрали кнопку для сворачивания панели -->
+            </div>
+            <div id="filterSidebar"> <!-- Убрали класс collapse -->
+                <div class="card-body">
+                    <!-- Добавьте свои опции фильтров здесь -->
+                    <h6>Filter by:</h6>
+                    <div>
+                        <label><input type="checkbox"> Option 1</label><br>
+                        <label><input type="checkbox"> Option 2</label><br>
+                        <label><input type="checkbox"> Option 3</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+        <div class="text-center">
+            <h1>Look for Students</h1>
+            <br>
+            <p>If you need students, they are here!</p>
+        </div>
+    </div>
+</div>
+<div align="center">
+    <br>
+    {% include './students_blanks.html'%}
+    <!-- only - для запрета передачи параметров из главного файла -->
+    <!-- with [переменные] - доп переменные указываем -->
 </div>
 {% endblock %}
