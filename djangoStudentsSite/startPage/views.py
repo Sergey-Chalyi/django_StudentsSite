@@ -19,6 +19,15 @@ def start(request: HttpRequest):
                 'name': 'Support',
             },
         ],
-        'pages' : ['Looking for a job', 'Looking for a students']
+        'pages' : [
+            {
+                'name' : 'Looking for a job',
+                'path' : 'look_job_main'
+            },
+            # {
+            #     'name': 'Looking for a students',
+            #     'path': 'look_job_main'
+            # },
+        ]
     }
-    return render(request, 'startPage/index.html', data)
+    return render(request, 'startPage/startPage_main.html', data)

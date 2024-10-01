@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'startPage.apps.StartPageConfig',
-    'support.apps.SupportConfig'
+    'support.apps.SupportConfig',
+    'lookForJob.apps.LookForJobConfig',
 ]
 
 MIDDLEWARE = [
