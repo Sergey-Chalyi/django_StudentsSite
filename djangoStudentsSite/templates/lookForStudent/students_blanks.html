@@ -1,21 +1,12 @@
-<table class="table">
+<div class="student-container">
     {% for student in students %}
-        {% if forloop.counter0|divisibleby:4 %}
-            <tr>
-        {% endif %}
-            <td>
-                <p>Name - {{ student.name }}</p>
-                <p>Age - {{ student.age }}</p>
-                <p>Specialization - {{ student.specialization }}</p>
-            </td>
-        {% if forloop.counter0|divisibleby:3 and not forloop.last %}
-            </tr>
-        {% endif %}
-        {% if forloop.last and not forloop.counter0|divisibleby:3 %}
-            </tr>
-        {% endif %}
+        <div class="student-card">
+            <p>Name - {{ student.name }}</p>
+            <p>Age - {{ student.age }}</p>
+            <p>Specialization - {{ student.specialization }}</p>
+        </div>
     {% endfor %}
-</table>
+</div>
 
 
 

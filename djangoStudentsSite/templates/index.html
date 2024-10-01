@@ -28,9 +28,10 @@
         }
 
         .footer {
-            background-color: #f8f9fa;
-            text-align: center;
-            padding: 10px 0;
+            background-color: #343a40; /* Цвет фона футера, совпадающий с навигационной панелью */
+            color: #ffffff; /* Цвет текста футера */
+            text-align: center; /* Выравнивание текста по центру */
+            padding: 15px 0; /* Отступы сверху и снизу */
         }
 
         /* Dark Theme Styles */
@@ -53,6 +54,37 @@
             color: #e0e0e0;
         }
 
+        body.dark-theme .student-card {
+            background-color: #2a2a2a;  /* Темный фон для карточек студентов */
+            border: 1px solid #444;     /* Темная граница для карточек студентов */
+        }
+
+        body.dark-theme .student-card h5 {
+            color: #e0e0e0;              /* Светлый цвет текста для заголовков */
+        }
+
+        body.dark-theme .student-card p {
+            color: #b0b0b0;              /* Более светлый цвет текста для параграфов */
+        }
+
+        .student-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .student-card {
+            flex: 0 1 30%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
         /* Additional element styles can be added here as needed */
     </style>
 </head>
