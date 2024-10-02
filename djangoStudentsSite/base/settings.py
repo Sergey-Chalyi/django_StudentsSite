@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-eksze(r4n9tkh32l%w$9_(stx5@w^5*-fg94i*a8ii&w@+%fp)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DEBUG = True
 
 # Application definition
 
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', # это нужно, чтоб джанга вообще включал статические файлы к проекту
 
     'startPage.apps.StartPageConfig',
     'support.apps.SupportConfig',
