@@ -1,21 +1,25 @@
-<table class="table">
-    {% for student in students %}
-        {% if forloop.counter0|divisibleby:4 %}
-            <tr>
-        {% endif %}
-            <td>
-                <p>Name - {{ student.name }}</p>
-                <p>Age - {{ student.age }}</p>
-                <p>Specialization - {{ student.specialization }}</p>
-            </td>
-        {% if forloop.counter0|divisibleby:3 and not forloop.last %}
-            </tr>
-        {% endif %}
-        {% if forloop.last and not forloop.counter0|divisibleby:3 %}
-            </tr>
-        {% endif %}
-    {% endfor %}
-</table>
+<div align="center">
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for student in students %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="min-height: 150px;"> <!-- Задаем минимальную высоту карточки -->
+                        <div class="card-body text-center">
+                            <h5 class="card-title" align="left">{{ student.name }}</h5>
+                            <p class="card-text" align="left">Age: {{ student.age }}</p>
+                            <p class="card-text" align="left">Specialization: {{ student.specialization }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row justify-content-center"> <!-- Начинаем новую строку после каждых 3 студентов -->
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
 
 

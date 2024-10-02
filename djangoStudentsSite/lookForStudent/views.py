@@ -28,7 +28,7 @@ def look_student_main(request: HttpRequest):
                 'name': 'Igor',
                 'age': 23,
                 'specialization': 'engineering'
-            }
+            },
         ]
     }
 
