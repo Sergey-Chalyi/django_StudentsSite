@@ -6,7 +6,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card" style="min-height: 150px;"> <!-- Задаем минимальную высоту карточки -->
                         <div class="card-body text-center">
-                            <h5 class="card-title" align="left">{{ student.name }}</h5>
+                            <h5 class="card-title" align="left"><a href="{{ student.get_absolute_url }}">{{ student.name }}</a></h5>
                             <p class="card-text" align="left">Age: {{ student.age }}</p>
                             <p class="card-text" align="left">Specialization: {{ student.specialization }}</p>
                         </div>

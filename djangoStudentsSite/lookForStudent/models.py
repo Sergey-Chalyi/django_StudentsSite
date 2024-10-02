@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.utils import timezone
 from django.db import models
 from django.utils.text import slugify
@@ -27,6 +28,9 @@ class Student(models.Model):
         super().save(*args, **kwargs)
         self.slug = slugify(f"{self.pk}_{self.name}_{self.surname}_{self.specialization}")
         super().save(update_fields=['slug'])
+
+    def get_absolute_url(self):
+        return reverse('student_blank', kwargs={'student_slug': self.slug})
 
     def __str__(self):
         return f"{self.pk} {self.name} {self.surname} {self.age}"
