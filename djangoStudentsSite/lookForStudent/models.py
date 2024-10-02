@@ -19,14 +19,14 @@ class Student(models.Model):
     changed_time = models.DateTimeField(auto_now=True)
 
     # slug поле
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True, editable=False)
 
     is_published = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f"{self.pk}_{self.name}_{self.surname}_{self.specialization}")
         super().save(*args, **kwargs)
+        self.slug = slugify(f"{self.pk}_{self.name}_{self.surname}_{self.specialization}")
+        super().save(update_fields=['slug'])
 
     def __str__(self):
         return f"{self.pk} {self.name} {self.surname} {self.age}"

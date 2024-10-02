@@ -1,0 +1,30 @@
+{% extends "../index.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>{{ student.name }} {{ student.surname }}</h2>
+                </div>
+                <div class="card-body text-left">
+                    <h5 class="card-title">Student Information</h5>
+                    <p><strong>Age:</strong> {{ student.age }}</p>
+                    <p><strong>Phone:</strong> {{ student.phone }}</p>
+                    <p><strong>Email:</strong> {{ student.email }}</p>
+                    <p><strong>University:</strong> {{ student.university }}</p>
+                    <p><strong>Specialization:</strong> {{ student.specialization }}</p>
+                    <p><strong>Degree:</strong> {{ student.degree }}</p>
+                    <p><strong>Course:</strong> {{ student.course }}</p>
+                    <p><strong>Description:</strong> {{ student.description }}</p>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <p>Information is accurate as of {{ student.created_time|date:"F j, Y, g:i a" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
