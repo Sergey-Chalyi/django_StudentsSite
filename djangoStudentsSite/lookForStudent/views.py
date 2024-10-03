@@ -9,7 +9,6 @@ def look_student_main(request: HttpRequest):
         'students': Student.published.all(),
         'categories' : SpecializationCategory.objects.all()
     }
-
     return render(request, 'lookForStudent/students_all_blanks_block.html', data)
 
 
@@ -24,9 +23,8 @@ def specialization_category(request: HttpRequest, category_slug):
     category = get_object_or_404(SpecializationCategory, slug=category_slug)
     students = Student.published.filter(category_id=category.pk)
     data = {
-        'category_name' : category.name,
         'students': students,
-        'categories' : category
+        'categories' : SpecializationCategory.objects.all(),
+        'cur_category' : category
     }
-
-    return render(request, 'lookForStudent/lookForStudent_category.html', data)
+    return render(request, 'lookForStudent/students_all_blanks_block.html', data)

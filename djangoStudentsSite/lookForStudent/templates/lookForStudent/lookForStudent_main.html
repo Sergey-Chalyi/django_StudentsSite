@@ -15,7 +15,7 @@
                 {% for category in categories %}
                 <div class="col-md-3 mb-2 d-flex">
                     <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center" style="height: 50px;">
-                        <a href="" style="text-decoration: none; color: white;">{{ category.name }}</a>
+                        <a href="{{ category.get_absolute_url }}" style="text-decoration: none; color: white;">{{ category.name }}</a>
                     </button>
                 </div>
                 {% endfor %}

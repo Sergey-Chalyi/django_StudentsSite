@@ -65,4 +65,4 @@ class SpecializationCategory(models.Model):
         super().save(update_fields=['slug'])
 
     def get_absolute_url(self):
-        return reverse('student_blank', kwargs={'student_slug': self.slug})
+        return reverse('specialization_category', kwargs={'category_slug': self.slug})
