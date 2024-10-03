@@ -1,40 +1,30 @@
 {% extends "../index.html" %}
 
 {% block content %}
-<div class="row">
-    <!-- Left Sidebar -->
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Filters</h5>
-                <!-- Убрали кнопку для сворачивания панели -->
-            </div>
-            <div id="filterSidebar"> <!-- Убрали класс collapse -->
-                <div class="card-body">
-                    <!-- Добавьте свои опции фильтров здесь -->
-                    <h6>Filter by:</h6>
-                    <div>
-                        <label><input type="checkbox"> Option 1</label><br>
-                        <label><input type="checkbox"> Option 2</label><br>
-                        <label><input type="checkbox"> Option 3</label><br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Content -->
-    <div class="col-md-9">
-        <div class="text-center">
+    <div class="col-md-9 mx-auto text-center">
+        <div>
             <h1>Look for Students</h1>
             <br>
             <p>If you need students, they are here!</p>
         </div>
-    </div>
-</div>
 
-<div align="center">
-    <br>
-    {% include './students_blanks_block.html'%}
-</div>
+        <!-- Блок с кнопками фильтров -->
+        <div class="mt-4">
+            <div class="row justify-content-center">
+                {% for category in categories %}
+                <div class="col-md-3 mb-2 d-flex">
+                    <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center" style="height: 50px;">
+                        <a href="" style="text-decoration: none; color: white;">{{ category.name }}</a>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <br>
+        {% include './students_blanks_block.html' %}
+    </div>
 {% endblock %}
