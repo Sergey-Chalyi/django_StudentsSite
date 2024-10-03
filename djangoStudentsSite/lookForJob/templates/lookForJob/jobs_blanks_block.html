@@ -1,0 +1,31 @@
+<div align="center">
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for job in jobs %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="min-height: 150px;"> <!-- Задаем минимальную высоту карточки -->
+                        <div class="card-body text-center">
+                            <h5 class="card-title" align="left"><a href="{{ job.get_absolute_url }}">{{ job.title }}</a></h5>
+                            <p class="card-text" align="left">
+                                {% if job.on_or_off == 'ON' %}
+                                Location: <span style="color: green;">online</span>
+                                {% else %}
+                                Location: {{ job.city }}
+                                {% endif %}
+                            </p>
+                            <p class="card-text" align="left">Salary: {{ job.salary }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row justify-content-center"> <!-- Начинаем новую строку после каждых 3 студентов -->
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+

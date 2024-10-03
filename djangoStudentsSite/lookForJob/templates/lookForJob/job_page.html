@@ -7,21 +7,25 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
-                    <h2>{{ student.name }} {{ student.surname }}</h2>
+                    <h2>{{ job.name }}</h2>
                 </div>
                 <div class="card-body text-left">
-                    <h5 class="card-title">Student Information</h5>
-                    <p><strong>Age:</strong> {{ student.age }}</p>
-                    <p><strong>Phone:</strong> {{ student.phone }}</p>
-                    <p><strong>Email:</strong> {{ student.email }}</p>
-                    <p><strong>University:</strong> {{ student.university }}</p>
-                    <p><strong>Specialization:</strong> {{ student.specialization }}</p>
-                    <p><strong>Degree:</strong> {{ student.degree }}</p>
-                    <p><strong>Course:</strong> {{ student.course }}</p>
-                    <p><strong>Description:</strong> {{ student.description }}</p>
+                    <h5 class="card-title">Job Information</h5>
+                    <p><strong>Title:</strong> {{ job.title }}</p>
+                    <p>
+                        <strong>Location:</strong>
+                        {% if job.on_or_off == 'ON' %}
+                            <span style="color: green;">online</span>
+                        {% else %}
+                            {{ job.city }}
+                        {% endif %}
+                    </p>
+                    <p><strong>Full-time/part-time:</strong> {{ job.full_or_part }}</p>
+                    <p><strong>Salary:</strong> {{ job.salary }}</p>
+                    <p><strong>Description:</strong> {{ job.description }}</p>
                 </div>
                 <div class="card-footer text-muted text-center">
-                    <p>Information is accurate as of {{ student.created_time|date:"F j, Y, g:i a" }}</p>
+                    <p>Information is accurate as of {{ job.created_time|date:"F j, Y, g:i a" }}</p>
                 </div>
             </div>
         </div>

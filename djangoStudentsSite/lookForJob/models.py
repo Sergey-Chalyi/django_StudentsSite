@@ -22,11 +22,11 @@ class Job(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.slug = slugify(f"{self.pk}_{self.title}")
+        self.slug = slugify(f"{self.pk}_{self.company}_{self.title}")
         super().save(update_fields=['slug'])
 
     def get_absolute_url(self):
         return reverse('job_blank', kwargs={'job_slug': self.slug})
 
     def __str__(self):
-        return f"{self.pk} {self.title}"
+        return f"{self.pk} {self.company} {self.title}"
