@@ -5,9 +5,14 @@ from django.utils.text import slugify
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_published=True)
+        return super().get_queryset().filter(is_published=Student.Status.PUBLISHED)
 
 class Student(models.Model):
+    # класс для определения перечислений (для чисел)
+    class Status(models.IntegerChoices):
+        DRAFT = (0, 'draft blank')
+        PUBLISHED = (1, 'published')
+
     gender = models.TextField(max_length=1)
     name = models.TextField(max_length=255)
     surname = models.TextField(max_length=255)
@@ -26,8 +31,11 @@ class Student(models.Model):
     # slug поле
     slug = models.SlugField(max_length=255, unique=True, editable=False)
 
-    is_published = models.BooleanField(default=True)
+    # передаем вторым параметром класс, которой определяет,
+    # что будет отображаться в, например, админке по полю is_published
+    is_published = models.BooleanField(default=Status.PUBLISHED, choices=Status.choices)
 
+    objects = models.Manager()
     published = PublishedManager()
 
     def save(self, *args, **kwargs):

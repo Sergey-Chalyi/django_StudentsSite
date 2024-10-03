@@ -10,6 +10,12 @@ class PublishedManager(models.Manager):
 
 
 class Job(models.Model):
+    # класс для определения перечислений (для чисел)
+    class Status(models.IntegerChoices):
+        DRAFT = (0, 'draft blank')
+        PUBLISHED = (1, 'published')
+
+
     title = models.TextField(max_length=255)
     company = models.TextField(max_length=500)
     on_or_off = models.TextField(max_length=2)
@@ -26,6 +32,7 @@ class Job(models.Model):
 
     is_published = models.BooleanField(default=True)
 
+    objects = models.Manager()
     published = PublishedManager()
 
     def save(self, *args, **kwargs):
