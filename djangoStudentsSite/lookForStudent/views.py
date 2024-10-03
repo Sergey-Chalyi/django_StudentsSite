@@ -10,7 +10,7 @@ def look_student_main(request: HttpRequest):
         'categories' : SpecializationCategory.objects.all()
     }
 
-    return render(request, 'lookForStudent/lookForStudent_main.html', data)
+    return render(request, 'lookForStudent/students_all_blanks_block.html', data)
 
 
 def student_blank(request: HttpRequest, student_slug):
