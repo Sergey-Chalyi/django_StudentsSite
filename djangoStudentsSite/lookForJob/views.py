@@ -6,7 +6,7 @@ from lookForJob.models import Job
 
 def look_job_main(request: HttpRequest):
     data = {
-        'jobs': Job.objects.all()
+        'jobs': Job.published.all()
     }
     return render(request, 'lookForJob/lookForJob_main.html', data)
 

@@ -3,16 +3,20 @@
     <div class="container">
         <div class="row justify-content-center">
             {% for student in students %}
-                <div class="col-md-12 mb-4"> <!-- Занимаем всю строку для одного объявления -->
+                <div class="col-md-4 mb-4"> <!-- Каждая карточка занимает треть строки -->
                     <div class="card" style="min-height: 150px;"> <!-- Задаем минимальную высоту карточки -->
                         <div class="card-body text-center">
                             <h5 class="card-title" align="left"><a href="{{ student.get_absolute_url }}">{{ student.name }}</a></h5>
                             <p class="card-text" align="left">Age: {{ student.age }}</p>
-                            <p class="card-text" align="left">Specialization: {{ student.specialization }}</p>
+                            <p class="card-text" align="left"><span style="color: orange;">Specialization:</span> {{ student.specialization }}</p>
                         </div>
                     </div>
                 </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row justify-content-center"> <!-- Начинаем новую строку после каждых 3 студентов -->
+                {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
+

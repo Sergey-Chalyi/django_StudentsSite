@@ -6,7 +6,7 @@ from lookForStudent.models import Student
 
 def look_student_main(request: HttpRequest):
     data = {
-        'students': Student.objects.all()
+        'students': Student.published.all()
     }
 
     return render(request, 'lookForStudent/lookForStudent_main.html', data)

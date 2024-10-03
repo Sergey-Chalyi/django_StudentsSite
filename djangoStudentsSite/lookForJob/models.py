@@ -3,6 +3,12 @@ from django.utils import timezone
 from django.db import models
 from django.utils.text import slugify
 
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
+
+
 class Job(models.Model):
     title = models.TextField(max_length=255)
     company = models.TextField(max_length=500)
@@ -19,6 +25,8 @@ class Job(models.Model):
     slug = models.SlugField(max_length=255, unique=True, editable=False)
 
     is_published = models.BooleanField(default=True)
+
+    published = PublishedManager()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
