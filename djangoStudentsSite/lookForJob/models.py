@@ -5,6 +5,7 @@ from django.utils.text import slugify
 
 class Job(models.Model):
     title = models.TextField(max_length=255)
+    company = models.TextField(max_length=500)
     on_or_off = models.TextField(max_length=2)
     city = models.TextField(max_length=255, blank=True)
     full_or_part = models.TextField(max_length=10)
