@@ -7,7 +7,8 @@ from lookForStudent.models import Student, SpecializationCategory
 def look_student_main(request: HttpRequest):
     data = {
         'students': Student.published.all(),
-        'categories' : SpecializationCategory.objects.all()
+        'categories' : SpecializationCategory.objects.all(),
+        'cur_category': None
     }
     return render(request, 'lookForStudent/students_all_blanks_block.html', data)
 

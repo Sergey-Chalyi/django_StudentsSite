@@ -14,9 +14,18 @@
             <div class="row justify-content-center">
                 {% for category in categories %}
                 <div class="col-md-3 mb-2 d-flex">
-                    <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center" style="height: 50px;">
-                        <a href="{{ category.get_absolute_url }}" style="text-decoration: none; color: white;">{{ category.name }}</a>
-                    </button>
+                    {% if cur_category and cur_category.id == category.id %}
+                        <!-- Если фильтр активен, делаем зелёную кнопку без ссылки -->
+                        <button class="btn w-100 d-flex align-items-center justify-content-center" style="height: 50px; background-color: #6bcf6f; color: white;">
+                            <span>{{ category.name }}</span>
+                        </button>
+                    {% else %}
+                        <!-- Если фильтр не активен, делаем кнопку-ссылку с исходным синим цветом -->
+                        <a href="{{ category.get_absolute_url }}" class="btn btn-primary w-100 d-flex align-items-center justify-content-center"
+                           style="height: 50px; text-decoration: none; color: white;">
+                            {{ category.name }}
+                        </a>
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
