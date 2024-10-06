@@ -30,3 +30,7 @@ def specialization_category(request: HttpRequest, category_slug):
         'cur_category' : category
     }
     return render(request, 'lookForStudent/students_all_blanks_block.html', data)
+
+
+def new_blank(request: HttpRequest):
+    return render(request, 'lookForStudent/new_blank.html')

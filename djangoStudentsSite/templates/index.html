@@ -85,6 +85,20 @@
             background-color: #f9f9f9;
             text-align: left;
         }
+
+        /* Gradient style for buttons */
+        .gradient-btn {
+            background: linear-gradient(135deg, #5bc0de, #2aa198); /* Градиент от светлого бирюзового к тёмному */
+            padding: 10px 15px;
+            border-radius: 5px; /* Закругленные углы */
+            transition: background 0.3s ease; /* Плавный переход при наведении */
+            border: none; /* Убираем стандартную границу */
+        }
+
+        /* Hover effect for buttons */
+        .gradient-btn:hover {
+            background: linear-gradient(135deg, #2aa198, #5bc0de); /* Инвертируем градиент при наведении */
+        }
         /* Additional element styles can be added here as needed */
     </style>
 </head>
@@ -99,6 +113,11 @@
                 <a class="nav-link border border-primary text-primary" href="{% url 'look_job_main' %}">Look for Job</a>
                 <span class="mx-1"></span>
                 <a class="nav-link border border-primary text-primary" href="{% url 'look_student_main' %}">Look for Students</a>
+
+                <span class="mx-1"></span>
+                <a class="nav-link gradient-btn text-white" href="{% url 'new_student_blank' %}">New Student Blank</a>
+                <span class="mx-1"></span>
+                <a class="nav-link gradient-btn text-white" href="">New Job</a>
             </div>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
