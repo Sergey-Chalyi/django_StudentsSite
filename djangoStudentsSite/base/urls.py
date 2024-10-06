@@ -22,5 +22,11 @@ urlpatterns = [
     path('', include('startPage.urls')),
     path('look_for_job/', include('lookForJob.urls')),
     path('look_for_student/', include('lookForStudent.urls')),
-    path('support/', include('support.urls'))
+    path('support/', include('support.urls')),
+    path('__debug__/', include("debug_toolbar.urls"))
 ]
+
+# название страницы админ панели
+admin.site.site_header = "ADMIN PANEL"
+# заглавие главной страницы админ панели
+admin.site.index_title = 'Main Admin Page'

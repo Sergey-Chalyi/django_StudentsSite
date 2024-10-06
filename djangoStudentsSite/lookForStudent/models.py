@@ -10,8 +10,16 @@ class PublishedManager(models.Manager):
 class Student(models.Model):
     # класс для определения перечислений (для чисел)
     class Status(models.IntegerChoices):
-        DRAFT = (0, 'draft blank')
-        PUBLISHED = (1, 'published')
+        DRAFT = 0, 'draft blank'
+        PUBLISHED = 1, 'published'
+
+    class Meta:
+        # название таблицы в админа панеле в единственном числе
+        verbose_name = "Blanks"
+        # название таблицы в админа панеле во множественном числе
+        verbose_name_plural = "Blanks"
+        # сортировка значений по умолчанию при выводе
+        ordering = ['pk']
 
     gender = models.TextField(max_length=1)
     name = models.TextField(max_length=255)
@@ -38,7 +46,7 @@ class Student(models.Model):
 
     # передаем вторым параметром класс, которой определяет,
     # что будет отображаться в, например, админке по полю is_published
-    is_published = models.BooleanField(default=Status.PUBLISHED, choices=Status.choices)
+    is_published = models.BooleanField(default=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)), choices=Status.choices)
 
     objects = models.Manager()
     published = PublishedManager()
@@ -52,7 +60,8 @@ class Student(models.Model):
         return reverse('student_blank', kwargs={'student_slug': self.slug})
 
     def __str__(self):
-        return f"{self.pk} {self.name} {self.surname} {self.age}"
+        return f"{self.pk}_{self.name}-{self.surname}-{self.age}_{self.category.name}"
+
 
 
 class SpecializationCategory(models.Model):
@@ -66,3 +75,12 @@ class SpecializationCategory(models.Model):
 
     def get_absolute_url(self):
         return reverse('specialization_category', kwargs={'category_slug': self.slug})
+
+    class Meta:
+        verbose_name = "Specialization categories"
+        verbose_name_plural = "Specialization categories"
+        # сортировка значений по умолчанию при выводе
+        ordering = ['pk']
+
+    def __str__(self):
+        return f"{self.pk}_{self.name}"

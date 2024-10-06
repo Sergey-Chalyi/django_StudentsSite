@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles', # это нужно, чтоб джанга вообще включал статические файлы к проекту
 
+    'debug_toolbar',
+
     'startPage.apps.StartPageConfig',
     'support.apps.SupportConfig',
     'lookForJob.apps.LookForJobConfig',
@@ -52,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
 ROOT_URLCONF = 'base.urls'
@@ -116,6 +120,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

@@ -15,9 +15,16 @@ class Job(models.Model):
         DRAFT = (0, 'draft blank')
         PUBLISHED = (1, 'published')
 
+    class Meta:
+        # название таблицы в админа панеле в единственном числе
+        verbose_name = "Vacancies"
+        # название таблицы в админа панеле во множественном числе
+        verbose_name_plural = "Vacancies"
+        # сортировка значений по умолчанию при выводе
+        ordering = ['pk']
 
     title = models.TextField(max_length=255)
-    company = models.TextField(max_length=500)
+    company = models.TextField(max_length=500, verbose_name='компания')
     on_or_off = models.TextField(max_length=2)
     city = models.TextField(max_length=255, blank=True)
     full_or_part = models.TextField(max_length=10)
@@ -44,4 +51,4 @@ class Job(models.Model):
         return reverse('job_blank', kwargs={'job_slug': self.slug})
 
     def __str__(self):
-        return f"{self.pk} {self.company} {self.title}"
+        return f"{self.pk}_{self.company}_{self.title}"

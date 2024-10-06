@@ -6,7 +6,8 @@ from lookForStudent.models import Student, SpecializationCategory
 
 def look_student_main(request: HttpRequest):
     data = {
-        'students': Student.published.all(),
+        # передается имя поле для связывания foreign key
+        'students': Student.published.all().select_related('category'),
         'categories' : SpecializationCategory.objects.all(),
         'cur_category': None
     }
