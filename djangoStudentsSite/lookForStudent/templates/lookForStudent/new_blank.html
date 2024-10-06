@@ -1,5 +1,65 @@
 {% extends "../index.html" %}
 
 {% block content %}
-
+<div class="container mt-5">
+    <div class="form-wrapper">
+        <h1 class="text-center font-weight-bold mb-4">Student Form</h1>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name" class="font-weight-bold">Name</label>
+                        <input type="text" class="form-control input-gray" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="surname" class="font-weight-bold">Surname</label>
+                        <input type="text" class="form-control input-gray" id="surname" placeholder="Enter your surname">
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="font-weight-bold">Age</label>
+                        <input type="number" class="form-control input-gray" id="age" placeholder="Enter your age">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="font-weight-bold">Phone</label>
+                        <input type="text" class="form-control input-gray" id="phone" placeholder="Enter your phone number">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email" class="font-weight-bold">Email</label>
+                        <input type="email" class="form-control input-gray" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="university" class="font-weight-bold">University</label>
+                        <input type="text" class="form-control input-gray" id="university" placeholder="Enter your university">
+                    </div>
+                    <div class="form-group">
+                        <label for="specialization" class="font-weight-bold">Specialization</label>
+                        <input type="text" class="form-control input-gray" id="specialization" placeholder="Enter your specialization">
+                    </div>
+                    <div class="form-group">
+                        <label for="degree" class="font-weight-bold">Degree</label>
+                        <input type="text" class="form-control input-gray" id="degree" placeholder="Enter your degree">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="font-weight-bold">Description</label>
+                <textarea class="form-control input-gray" id="description" rows="3" placeholder="Enter a description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+</div>
+<br>
+<style>
+    .input-gray {
+        background-color: #f0f0f0; /* Светло-серый фон */
+        border-color: #ced4da; /* Цвет рамки */
+    }
+    .input-gray:focus {
+        background-color: #e9ecef; /* Немного более темный цвет при фокусе */
+        border-color: #80bdff; /* Подсветка рамки при фокусе */
+    }
+</style>
 {% endblock %}
