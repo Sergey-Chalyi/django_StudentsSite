@@ -22,7 +22,7 @@ class Student(models.Model):
         ordering = ['pk']
 
     gender = models.TextField(max_length=1)
-    name = models.TextField(max_length=255)
+    name = models.TextField(max_length=255, verbose_name='name')
     surname = models.TextField(max_length=255)
     age = models.IntegerField()
     phone = models.TextField(max_length=255, unique=True)

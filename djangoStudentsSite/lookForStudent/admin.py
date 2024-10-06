@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from lookForStudent.models import Student, SpecializationCategory
+from django.contrib.admin import SimpleListFilter
+
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
@@ -43,5 +45,18 @@ class StudentAdmin(admin.ModelAdmin):
         # текст, который будет выводиться после применения данного действия
         self.message_user(request, f'{count} blanks were deactivated')
 
+    # поле для поиска, тут можно прописывать люкапы
+    search_fields = ['name', 'category__name']
 
+    # добавляем фильтры
+    list_filter = ['name', 'category__name']
+
+    # включает поля, которые будут видны в просмотре конкретной записи
+    fields = ['name']
+
+    # ИСКЛЮЧАЕТ поля, которые НЕ будут видны в просмотре конкретной записи
+    # exclude = ['surname']
+
+    # поля, которые будут отображены только для чтения
+    readonly_fields = ['created_time']
 admin.site.register(SpecializationCategory)
