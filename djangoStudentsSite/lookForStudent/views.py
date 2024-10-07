@@ -1,6 +1,9 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, get_object_or_404
+from contextlib import redirect_stderr
 
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+
+from lookForStudent.forms import StudentForm
 from lookForStudent.models import Student, SpecializationCategory
 
 
@@ -33,4 +36,19 @@ def specialization_category(request: HttpRequest, category_slug):
 
 
 def new_blank(request: HttpRequest):
-    return render(request, 'lookForStudent/new_blank.html')
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            try:
+                Student.objects.create(**form.cleaned_data)
+                return redirect('start_main')
+            except:
+                print('1')
+                form.add_error(None, "Mistake when user filled in the form")
+    else:
+        form = StudentForm()
+
+    data = {
+        'form' : form
+    }
+    return render(request, 'lookForStudent/new_blank.html', data)

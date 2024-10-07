@@ -1,65 +1,125 @@
 {% extends "../index.html" %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="form-wrapper">
-        <h1 class="text-center font-weight-bold mb-4">Student Form</h1>
-        <form>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="name" class="font-weight-bold">Name</label>
-                        <input type="text" class="form-control input-gray" id="name" placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="surname" class="font-weight-bold">Surname</label>
-                        <input type="text" class="form-control input-gray" id="surname" placeholder="Enter your surname">
-                    </div>
-                    <div class="form-group">
-                        <label for="age" class="font-weight-bold">Age</label>
-                        <input type="number" class="form-control input-gray" id="age" placeholder="Enter your age">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="font-weight-bold">Phone</label>
-                        <input type="text" class="form-control input-gray" id="phone" placeholder="Enter your phone number">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="email" class="font-weight-bold">Email</label>
-                        <input type="email" class="form-control input-gray" id="email" placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label for="university" class="font-weight-bold">University</label>
-                        <input type="text" class="form-control input-gray" id="university" placeholder="Enter your university">
-                    </div>
-                    <div class="form-group">
-                        <label for="specialization" class="font-weight-bold">Specialization</label>
-                        <input type="text" class="form-control input-gray" id="specialization" placeholder="Enter your specialization">
-                    </div>
-                    <div class="form-group">
-                        <label for="degree" class="font-weight-bold">Degree</label>
-                        <input type="text" class="form-control input-gray" id="degree" placeholder="Enter your degree">
-                    </div>
-                </div>
+<h1 align="center">Student Form</h1>
+<form method="post">
+    {% csrf_token %}
+
+    <div class="form-container">
+        {% if form.non_field_errors %}
+        <div class="error_for_all">{{ form.non_field_errors }}</div>
+        <br>
+        {% endif %}
+        <div class="form-grid">
+            {% for f in form %}
+            <div>
+                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                {{ f }}
+                <div class="error">{{ f.errors }}</div>
             </div>
-            <div class="form-group">
-                <label for="description" class="font-weight-bold">Description</label>
-                <textarea class="form-control input-gray" id="description" rows="3" placeholder="Enter a description"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </form>
+            {% endfor %}
+        </div>
+        <button type="submit">Submit</button>
     </div>
-</div>
+</form>
+
 <br>
+
 <style>
-    .input-gray {
-        background-color: #f0f0f0; /* Светло-серый фон */
-        border-color: #ced4da; /* Цвет рамки */
+    /* Определение переменных для светлой и темной темы */
+    :root {
+        --background-color: #ffffff;
+        --text-color: #000000;
+        --input-background-color: #f5f5f5;
+        --input-text-color: #000000;
+        --input-border-color: #cccccc;
+        --error-color: #ff0000;
+        --form-background-color: #f9f9f9; /* Цвет фона формы в светлой теме */
+        --button-background-color: #007bff;
+        --button-text-color: #ffffff;
     }
-    .input-gray:focus {
-        background-color: #e9ecef; /* Немного более темный цвет при фокусе */
-        border-color: #80bdff; /* Подсветка рамки при фокусе */
+
+    [data-theme="dark"] {
+        --background-color: #333333;
+        --text-color: #f0f0f0;
+        --input-background-color: #555555;
+        --input-text-color: #f0f0f0;
+        --input-border-color: #666666;
+        --error-color: #ff6b6b;
+        --form-background-color: #444444; /* Цвет фона формы в темной теме */
+        --button-background-color: #0056b3;
+    }
+
+    /* Стили для контейнера формы */
+    .form-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: var(--form-background-color); /* Использование переменной для смены темы */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    /* Стили для сетки */
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    label {
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    input, textarea, select {
+        background-color: var(--input-background-color);
+        color: var(--input-text-color);
+        border: 1px solid var(--input-border-color);
+        padding: 10px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Стили кнопки */
+    button {
+        padding: 10px 20px;
+        background-color: var(--button-background-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 200px; /* Уменьшенная ширина кнопки */
+        display: block;
+        margin: 20px auto 0; /* Центрирование кнопки */
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .full-width {
+        grid-column: span 2;
+    }
+
+    .form-grid div {
+        color: var(--error-color);
+    }
+
+    .error_for_all {
+        color: white; /* Цвет текста */
+        background-color: rgba(255, 0, 0, 0.7); /* Красный с прозрачностью */
+        padding: 10px; /* Отступы вокруг текста */
+        border-radius: 5px; /* Закругленные углы */
+        margin-top: 10px; /* Отступ сверху */
+        width: calc(100% - 20px); /* Учитывает отступы и границы (если они есть) */
+        box-sizing: border-box; /* Учитывать отступы в ширине */
     }
 </style>
 {% endblock %}
