@@ -1,16 +1,16 @@
 from contextlib import redirect_stderr
 from pipes import Template
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import TemplateView, ListView
-from django.contrib.auth.decorators import login_required
 
 
 from lookForStudent.forms import StudentForm
 from lookForStudent.models import Student, SpecializationCategory
-
 
 def look_student_main(request: HttpRequest):
     data = {
@@ -22,6 +22,7 @@ def look_student_main(request: HttpRequest):
     return render(request, 'lookForStudent/students_all_blanks_block.html', data)
 
 
+@login_required
 def student_blank(request: HttpRequest, student_slug):
     data = {
         'student' : get_object_or_404(Student, slug = student_slug)
@@ -57,8 +58,7 @@ class LookForStudentHome(ListView):
         return context
 
 
-
-class CreateNewBlank(View):
+class CreateNewBlank(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         form = StudentForm()
         data = {
@@ -82,7 +82,6 @@ class CreateNewBlank(View):
 
 
 
-# @login_required
 def new_blank(request: HttpRequest):
     if request.method == 'POST':
         form = StudentForm(request.POST)
