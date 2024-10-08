@@ -5,6 +5,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import TemplateView, ListView
+from django.contrib.auth.decorators import login_required
 
 
 from lookForStudent.forms import StudentForm
@@ -81,7 +82,7 @@ class CreateNewBlank(View):
 
 
 
-
+# @login_required
 def new_blank(request: HttpRequest):
     if request.method == 'POST':
         form = StudentForm(request.POST)

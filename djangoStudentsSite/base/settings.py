@@ -134,6 +134,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # куда юзер перейдет при входе в систему (можно указать имя маршрута)
-LOGIN_REDIRECT_URL = 'start_main'
+LOGIN_REDIRECT_URL = 'new_student_blank'
 
-LOGOUT_REDIRECT_URL = 'student_login'
+LOGOUT_REDIRECT_URL = 'new_student_blank'

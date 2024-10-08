@@ -24,25 +24,25 @@ class LoginStudent(LoginView):
 
 
 
-# Create your views here.
-def login_student(request: HttpRequest):
-    # если мы заполнили форму и нажали на кнопку "авторизоваться
-    if request.method == 'POST':
-        form = LoginStudentForm(request.POST) # создаем объект формы
-        if form.is_valid(): # если все поля формы заполнены корректно
-            cd = form.cleaned_data # получаем словарь введенных данных
-            # проверка наличия юзера в бд (в таблице, созданной джанго автоматом)
-            # если есть - создается объект (в противном случае None)
-            user = authenticate(request, username=cd['username'], password=cd['password'])
-            if user and user.is_active: # проверка наличия юзера в бд
-                login(request, user) # авторизация юзера в системе, благодаря этой функции джанго запоминает данные юзера благодаря сессиям (не нужно второй раз вводить пароль и логин)
-                return HttpResponseRedirect(reverse('home')) # перенаправляем на главную страницу
-    else: # если только в первый раз открыли страничку с формой авторизоваться
-        form = LoginStudentForm() # создаем объект формы
-
-    return render(request,'student/login.html', {'form' : form})
-
-
-def logout_student(request: HttpRequest):
-    logout(request) # джанго делает так, чтобы юзер вышел из сайта
-    return HttpResponseRedirect(reverse('users:student_login')) # перенаправляем на страницу входа (reverse используется, когда у нас не конкретный пусть, а используется пространство именя)
+# # Create your views here.
+# def login_student(request: HttpRequest):
+#     # если мы заполнили форму и нажали на кнопку "авторизоваться
+#     if request.method == 'POST':
+#         form = LoginStudentForm(request.POST) # создаем объект формы
+#         if form.is_valid(): # если все поля формы заполнены корректно
+#             cd = form.cleaned_data # получаем словарь введенных данных
+#             # проверка наличия юзера в бд (в таблице, созданной джанго автоматом)
+#             # если есть - создается объект (в противном случае None)
+#             user = authenticate(request, username=cd['username'], password=cd['password'])
+#             if user and user.is_active: # проверка наличия юзера в бд
+#                 login(request, user) # авторизация юзера в системе, благодаря этой функции джанго запоминает данные юзера благодаря сессиям (не нужно второй раз вводить пароль и логин)
+#                 return HttpResponseRedirect(reverse('start_main')) # перенаправляем на главную страницу
+#     else: # если только в первый раз открыли страничку с формой авторизоваться
+#         form = LoginStudentForm() # создаем объект формы
+#
+#     return render(request,'student/login.html', {'form' : form})
+#
+#
+# def logout_student(request: HttpRequest):
+#     logout(request) # джанго делает так, чтобы юзер вышел из сайта
+#     return HttpResponseRedirect('/users/student_login') # перенаправляем на страницу входа (reverse используется, когда у нас не конкретный пусть, а используется пространство именя)
