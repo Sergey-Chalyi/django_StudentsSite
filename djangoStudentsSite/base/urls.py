@@ -23,7 +23,10 @@ urlpatterns = [
     path('look_for_job/', include('lookForJob.urls')),
     path('look_for_student/', include('lookForStudent.urls')),
     path('support/', include('support.urls')),
-    path('__debug__/', include("debug_toolbar.urls"))
+    path('__debug__/', include("debug_toolbar.urls")),
+    # namespace - пространство имен для маршрутов в student.urls
+    # для того, чтобы обращаться к маршрутам users:name
+    path('users/', include('student.urls', namespace="users")),
 ]
 
 # название страницы админ панели

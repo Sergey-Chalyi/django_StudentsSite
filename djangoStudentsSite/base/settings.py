@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'startPage.apps.StartPageConfig',
     'support.apps.SupportConfig',
     'lookForJob.apps.LookForJobConfig',
-    'lookForStudent.apps.LookForStudentConfig'
+    'lookForStudent.apps.LookForStudentConfig',
+    'student.apps.StudentConfig',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# куда юзер перейдет при входе в систему (можно указать имя маршрута)
+LOGIN_REDIRECT_URL = 'start_main'
+
+LOGOUT_REDIRECT_URL = 'student_login'
